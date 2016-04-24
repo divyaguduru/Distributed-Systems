@@ -1,0 +1,27 @@
+#Transparent Remote File Operations
+
+Run "make" in tcp-sample and interpose directories to build 
+the programs.
+
+The tools directory has a few programs we will be using to test. These are binary-only tools that operate on the local filesystem.  You will make them operate across the network by interposing on their C library calls. Run any of these tools without arguments for a brief message on how to use it. These binaries should work on x86 64-bit Linux systems (e.g., unix.andrew.cmu.edu servers).  
+
+To use the interposing library, try (if using BASH shell):
+```bash
+	LD_PRELOAD=./interpose/mylib.so ./tools/440read README
+```
+or (if using CSH, TCSH, ...):
+``` bash
+	env LD_PRELOAD=./interpose/mylib.so ./tools/440read README
+```
+
+You should see a message indicating the open function in the interpositon library was called.  
+
+Note that the 440tree tool uses the getdirtree function implemented in libdirtree.so in the lib directory. Please add the absolute path of this directory to LD_LIBRARY_PATH to make sure that the system can find the library, e.g. on BASH:
+``` bash
+	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH;$PWD/lib"
+```
+or if using CSH, TCSH, ...:
+``` bash
+	setenv LD_LIBRARY_PATH "$LD_LIBRARY_PATH;$PWD/lib"
+```
+

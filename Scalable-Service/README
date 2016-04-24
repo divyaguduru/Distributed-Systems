@@ -1,0 +1,10 @@
+#Scalable Service
+The main classes (Cloud, ServerLib, Database, ClientSim) and the sample database file (db1.txt) are in the lib directory.  
+
+To build server, ensure your CLASSPATH has the lib and src directory included.  Then run make in the src directory.
+
+To run the src, try:
+``` bash
+	java Cloud 15440 lib/db1.txt c-2000-1 12
+```
+This will launch the "Cloud" service, load the database with the items in lib/db1.txt, and start simulating clients arriving at a constant rate every 2000 ms.  A single instance of the src Server will b erun as a "VM" (actually a spearate process).  
